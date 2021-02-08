@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import 'firebase/firestrore';
+import 'firebase/firestore';
 import 'firebase/auth';
 
 const config =  {
@@ -12,11 +12,13 @@ const config =  {
     measurementId: "G-RVWE37H1QD"
   };
 
-firebase.initializeApp(config);
+  firebase.initializeApp(config);
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+  export const auth = firebase.auth();
+  export const firestore = firebase.firestore();
+  
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  export const signInWithGoogle = () => auth.signInWithPopup(provider);
+  
+  export default firebase;

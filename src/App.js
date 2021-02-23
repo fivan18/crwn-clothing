@@ -10,15 +10,15 @@ import Header from './components/header/header.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 class App extends React.Component {
-  constructor(props){
+  unsubscribeFromAuth = null;
+
+  constructor(props) {
     super(props);
-    
+
     this.state = {
-      currentUser: null
+      currentUser: null,
     };
   }
-
-  unsubscribeFromAuth = null;
 
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -29,8 +29,8 @@ class App extends React.Component {
           this.setState({
             currentUser: {
               id: snapShot.id,
-              ...snapShot.data()
-            }
+              ...snapShot.data(),
+            },
           });
         });
       }
@@ -43,14 +43,15 @@ class App extends React.Component {
     this.unsubscribeFromAuth();
   }
 
-  render(){
+  render() {
+    const { currentUser } = this.state;
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header currentUser={currentUser} />
         <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route path='/shop' component={ShopPage} />
-          <Route path='/signin' component={SignInAndSignUpPage} />
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route path="/signin" component={SignInAndSignUpPage} />
         </Switch>
       </div>
     );

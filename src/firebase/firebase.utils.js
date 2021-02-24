@@ -39,7 +39,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
   }
 
-  // return userRef;
+  // eslint-disable-next-line consistent-return
+  return userRef;
 };
 
 export const auth = firebase.auth();

@@ -4,9 +4,19 @@ import PropTypes from 'prop-types';
 
 import './custom-button.styles.scss';
 
-const CustomButton = ({ children, isGoogleSignIn, ...otherProps }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading, react/button-has-type
-  <button className={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`} {...otherProps}>
+const CustomButton = ({
+  children,
+  isGoogleSignIn,
+  inverted,
+  ...otherProps
+}) => (
+  // eslint-disable-next-line react/button-has-type
+  <button
+    className={`${inverted ? 'inverted' : ''}
+  ${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
+  // eslint-disable-next-line react/jsx-props-no-spreading
+    {...otherProps}
+  >
     {children}
   </button>
 );
@@ -14,6 +24,11 @@ const CustomButton = ({ children, isGoogleSignIn, ...otherProps }) => (
 CustomButton.propTypes = {
   children: PropTypes.func.isRequired,
   isGoogleSignIn: PropTypes.bool.isRequired,
+  inverted: PropTypes.string,
+};
+
+CustomButton.defaultProps = {
+  inverted: undefined,
 };
 
 export default CustomButton;

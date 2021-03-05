@@ -44,9 +44,9 @@ CartDropdown.propTypes = {
       quantity: PropTypes.number.isRequired,
     }).isRequired,
   ).isRequired,
-  history: PropTypes.arrayOf(
-    PropTypes.string,
-  ).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

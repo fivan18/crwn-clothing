@@ -12,9 +12,9 @@ const CollectionPreview = ({ title, items }) => (
     <div className="preview">
       {items
         .filter((item, idx) => idx < 4)
-        .map(({ id, ...otherItemProps }) => (
+        .map(item => (
           // eslint-disable-next-line react/jsx-props-no-spreading
-          <CollectionItem key={id} {...otherItemProps} />
+          <CollectionItem key={item.id} item={item} />
         ))}
     </div>
   </div>

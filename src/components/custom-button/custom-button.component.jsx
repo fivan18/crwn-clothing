@@ -22,13 +22,14 @@ const CustomButton = ({
 );
 
 CustomButton.propTypes = {
-  children: PropTypes.func.isRequired,
-  isGoogleSignIn: PropTypes.bool.isRequired,
-  inverted: PropTypes.string,
+  children: PropTypes.string.isRequired,
+  isGoogleSignIn: PropTypes.bool,
+  inverted: PropTypes.bool,
 };
 
 CustomButton.defaultProps = {
-  inverted: undefined,
+  isGoogleSignIn: undefined,
+  inverted: false,
 };
 
 export default CustomButton;

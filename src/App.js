@@ -67,11 +67,15 @@ class App extends React.Component {
   }
 }
 
+App.defaultProps = {
+  currentUser: null,
+};
+
 App.propTypes = {
   setCurrentUser: PropTypes.func.isRequired,
   currentUser: PropTypes.shape({
     id: PropTypes.number.isRequired,
-  }).isRequired,
+  }),
 };
 
 const mapStateToProps = createStructuredSelector({

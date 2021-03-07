@@ -1,31 +1,23 @@
 import React from 'react';
 
-import SHOP_DATA from './shop.data';
+import PropTypes from 'prop-types';
 
-import CollectionPreview from '../../components/collection-preview/collection-preview.component';
+import { Route } from 'react-router-dom';
 
-class Shop extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      collections: SHOP_DATA,
-    };
-  }
+import CollectionsOverview from '../../components/collections-overview/collections-overview.component';
+import CollectionPage from '../collection/collection.component';
 
-  render() {
-    const { collections } = this.state;
+const ShopPage = ({ match }) => (
+  <div className="shop-page">
+    <Route exact path={`${match.path}`} component={CollectionsOverview} />
+    <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
+  </div>
+);
 
-    return (
-      <div className="shop-page">
-        {
-          collections.map(({ id, ...otherCollectionProps }) => (
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            <CollectionPreview key={id} {...otherCollectionProps} />
-          ))
-        }
-      </div>
-    );
-  }
-}
+ShopPage.propTypes = {
+  match: PropTypes.shape({
+    path: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
-export default Shop;
+export default ShopPage;
